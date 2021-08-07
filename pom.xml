@@ -20,7 +20,7 @@
 
     <groupId>fr.barodine.anael</groupId>
     <artifactId>discord-bot-role-attributor</artifactId>
-    <version>1.0</version>
+    <version>1.0a</version>
 
     <distributionManagement>
         <repository>
@@ -42,6 +42,17 @@
             <id>dv8tion</id>
             <name>m2-dv8tion</name>
             <url>https://m2.dv8tion.net/releases</url>
+        </repository>
+
+        <repository>
+            <id>github-nastiouchanakamura</id>
+            <name>GitHub NastiouchaNakamura Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/NastiouchaNakamura/*</url>
+        </repository>
+        <repository>
+            <id>github-bde-tribu-terre</id>
+            <name>GitHub bde-tribu-terre Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/bde-tribu-terre/*</url>
         </repository>
     </repositories>
 
