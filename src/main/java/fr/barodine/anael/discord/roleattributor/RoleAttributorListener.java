@@ -162,7 +162,7 @@ public class RoleAttributorListener extends AbstractBaseListener {
 
             // Log.
             this.log(
-                    "User " + event.getUser() + " reacted '" + event.getReactionEmote().getEmoji() + "'" +
+                    "User " + event.getUser() + " reacted '" + (event.getReactionEmote().isEmoji() ? event.getReactionEmote().getEmoji() : event.getReactionEmote().getEmote()) + "'" +
                             (
                                     receivedEmoji != null ?
                                             " giving role " + event.getGuild().getRoleById(this.emojiToRole.get(receivedEmoji).getId()) :
