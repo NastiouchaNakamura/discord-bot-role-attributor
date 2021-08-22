@@ -75,32 +75,32 @@ public class RoleAttributorListener extends AbstractBaseListener {
 
     private void findEmojis() {
         // Obtention du message.
-        this.listenedMessage.queue(message -> {
-            // Trouver les rôles.
-            Map<String, Role> roleNameToRole = new HashMap<>();
-            for (Role role : message.getGuild().getRoles()) {
-                roleNameToRole.put(role.getName().toLowerCase(Locale.ROOT), role);
-            }
+        Message message = this.listenedMessage.complete();
 
-            // Trouver les émojis.
-            this.emojiToRole = new HashMap<>();
+        // Trouver les rôles.
+        Map<String, Role> roleNameToRole = new HashMap<>();
+        for (Role role : message.getGuild().getRoles()) {
+            roleNameToRole.put(role.getName().toLowerCase(Locale.ROOT), role);
+        }
 
-            boolean passing = true;
-            for (String line : message.getContentRaw().toLowerCase(Locale.ROOT).split((System.getProperty("line.separator")))) {
-                if (passing) {
-                    if (line.equals("--")) {
-                        passing = false;
-                    }
-                } else {
-                    String[] emojiRoleName = line.split(" ", 2);
-                    if (roleNameToRole.containsKey(emojiRoleName[1])) {
-                        this.emojiToRole.put(emojiRoleName[0], roleNameToRole.get(emojiRoleName[1]));
-                    }
+        // Trouver les émojis.
+        this.emojiToRole = new HashMap<>();
+
+        boolean passing = true;
+        for (String line : message.getContentRaw().toLowerCase(Locale.ROOT).split((System.getProperty("line.separator")))) {
+            if (passing) {
+                if (line.equals("--")) {
+                    passing = false;
+                }
+            } else {
+                String[] emojiRoleName = line.split(" ", 2);
+                if (roleNameToRole.containsKey(emojiRoleName[1])) {
+                    this.emojiToRole.put(emojiRoleName[0], roleNameToRole.get(emojiRoleName[1]));
                 }
             }
+        }
 
-            this.log("Emojis found in the message: " + this.emojiToRole.toString());
-        });
+        this.log("Emojis found in the message: " + this.emojiToRole.toString());
     }
 
     private void reloadMessageReactions() {
